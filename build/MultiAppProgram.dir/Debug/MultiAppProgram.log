@@ -1,0 +1,11 @@
+﻿  Building Custom Rule C:/project_root/CMakeLists.txt
+  camera.cpp
+  chatbot.cpp
+  database.cpp
+  main.cpp
+  mainwindow.cpp
+  map.cpp
+  settings.cpp
+  weather.cpp
+  Generating Code...
+  MultiAppProgram.vcxproj -> C:\project_root\build\Debug\MultiAppProgram.exe

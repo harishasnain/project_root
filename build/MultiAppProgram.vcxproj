@@ -1,0 +1,444 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project DefaultTargets="Build" ToolsVersion="17.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup>
+    <PreferredToolArchitecture>x64</PreferredToolArchitecture>
+  </PropertyGroup>
+  <ItemGroup Label="ProjectConfigurations">
+    <ProjectConfiguration Include="Debug|x64">
+      <Configuration>Debug</Configuration>
+      <Platform>x64</Platform>
+    </ProjectConfiguration>
+    <ProjectConfiguration Include="Release|x64">
+      <Configuration>Release</Configuration>
+      <Platform>x64</Platform>
+    </ProjectConfiguration>
+    <ProjectConfiguration Include="MinSizeRel|x64">
+      <Configuration>MinSizeRel</Configuration>
+      <Platform>x64</Platform>
+    </ProjectConfiguration>
+    <ProjectConfiguration Include="RelWithDebInfo|x64">
+      <Configuration>RelWithDebInfo</Configuration>
+      <Platform>x64</Platform>
+    </ProjectConfiguration>
+  </ItemGroup>
+  <PropertyGroup Label="Globals">
+    <ProjectGuid>{2702F548-A6B1-3A9A-A6A9-8772067FD4DF}</ProjectGuid>
+    <Keyword>Win32Proj</Keyword>
+    <VcpkgEnabled>false</VcpkgEnabled>
+    <WindowsTargetPlatformVersion>10.0.22621.0</WindowsTargetPlatformVersion>
+    <Platform>x64</Platform>
+    <ProjectName>MultiAppProgram</ProjectName>
+    <VCProjectUpgraderObjectName>NoUpgrade</VCProjectUpgraderObjectName>
+  </PropertyGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props" />
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'" Label="Configuration">
+    <ConfigurationType>Application</ConfigurationType>
+    <CharacterSet>MultiByte</CharacterSet>
+    <PlatformToolset>v143</PlatformToolset>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'" Label="Configuration">
+    <ConfigurationType>Application</ConfigurationType>
+    <CharacterSet>MultiByte</CharacterSet>
+    <PlatformToolset>v143</PlatformToolset>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='MinSizeRel|x64'" Label="Configuration">
+    <ConfigurationType>Application</ConfigurationType>
+    <CharacterSet>MultiByte</CharacterSet>
+    <PlatformToolset>v143</PlatformToolset>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='RelWithDebInfo|x64'" Label="Configuration">
+    <ConfigurationType>Application</ConfigurationType>
+    <CharacterSet>MultiByte</CharacterSet>
+    <PlatformToolset>v143</PlatformToolset>
+  </PropertyGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.props" />
+  <ImportGroup Label="ExtensionSettings">
+  </ImportGroup>
+  <ImportGroup Label="PropertySheets">
+    <Import Project="do_not_import_user.props" Condition="exists('do_not_import_user.props')" Label="LocalAppDataPlatform" />
+  </ImportGroup>
+  <PropertyGroup Label="UserMacros" />
+  <PropertyGroup>
+    <_ProjectFileVersion>10.0.20506.1</_ProjectFileVersion>
+    <OutDir Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">C:\project_root\build\Debug\</OutDir>
+    <IntDir Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">MultiAppProgram.dir\Debug\</IntDir>
+    <TargetName Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">MultiAppProgram</TargetName>
+    <TargetExt Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">.exe</TargetExt>
+    <LinkIncremental Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">true</LinkIncremental>
+    <GenerateManifest Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">true</GenerateManifest>
+    <OutDir Condition="'$(Configuration)|$(Platform)'=='Release|x64'">C:\project_root\build\Release\</OutDir>
+    <IntDir Condition="'$(Configuration)|$(Platform)'=='Release|x64'">MultiAppProgram.dir\Release\</IntDir>
+    <TargetName Condition="'$(Configuration)|$(Platform)'=='Release|x64'">MultiAppProgram</TargetName>
+    <TargetExt Condition="'$(Configuration)|$(Platform)'=='Release|x64'">.exe</TargetExt>
+    <LinkIncremental Condition="'$(Configuration)|$(Platform)'=='Release|x64'">false</LinkIncremental>
+    <GenerateManifest Condition="'$(Configuration)|$(Platform)'=='Release|x64'">true</GenerateManifest>
+    <OutDir Condition="'$(Configuration)|$(Platform)'=='MinSizeRel|x64'">C:\project_root\build\MinSizeRel\</OutDir>
+    <IntDir Condition="'$(Configuration)|$(Platform)'=='MinSizeRel|x64'">MultiAppProgram.dir\MinSizeRel\</IntDir>
+    <TargetName Condition="'$(Configuration)|$(Platform)'=='MinSizeRel|x64'">MultiAppProgram</TargetName>
+    <TargetExt Condition="'$(Configuration)|$(Platform)'=='MinSizeRel|x64'">.exe</TargetExt>
+    <LinkIncremental Condition="'$(Configuration)|$(Platform)'=='MinSizeRel|x64'">false</LinkIncremental>
+    <GenerateManifest Condition="'$(Configuration)|$(Platform)'=='MinSizeRel|x64'">true</GenerateManifest>
+    <OutDir Condition="'$(Configuration)|$(Platform)'=='RelWithDebInfo|x64'">C:\project_root\build\RelWithDebInfo\</OutDir>
+    <IntDir Condition="'$(Configuration)|$(Platform)'=='RelWithDebInfo|x64'">MultiAppProgram.dir\RelWithDebInfo\</IntDir>
+    <TargetName Condition="'$(Configuration)|$(Platform)'=='RelWithDebInfo|x64'">MultiAppProgram</TargetName>
+    <TargetExt Condition="'$(Configuration)|$(Platform)'=='RelWithDebInfo|x64'">.exe</TargetExt>
+    <LinkIncremental Condition="'$(Configuration)|$(Platform)'=='RelWithDebInfo|x64'">true</LinkIncremental>
+    <GenerateManifest Condition="'$(Configuration)|$(Platform)'=='RelWithDebInfo|x64'">true</GenerateManifest>
+  </PropertyGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
+    <ClCompile>
+      <AdditionalIncludeDirectories>C:\project_root\src;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalOptions>%(AdditionalOptions) /external:I "C:/project_root/vcpkg/installed/x64-windows/include"</AdditionalOptions>
+      <AssemblerListingLocation>$(IntDir)</AssemblerListingLocation>
+      <BasicRuntimeChecks>EnableFastChecks</BasicRuntimeChecks>
+      <DebugInformationFormat>ProgramDatabase</DebugInformationFormat>
+      <ExceptionHandling>Sync</ExceptionHandling>
+      <ExternalWarningLevel>TurnOffAllWarnings</ExternalWarningLevel>
+      <InlineFunctionExpansion>Disabled</InlineFunctionExpansion>
+      <LanguageStandard>stdcpp17</LanguageStandard>
+      <MinimalRebuild></MinimalRebuild>
+      <Optimization>Disabled</Optimization>
+      <PrecompiledHeader>NotUsing</PrecompiledHeader>
+      <RuntimeLibrary>MultiThreadedDebugDLL</RuntimeLibrary>
+      <RuntimeTypeInfo>true</RuntimeTypeInfo>
+      <SupportJustMyCode></SupportJustMyCode>
+      <UseFullPaths>false</UseFullPaths>
+      <PreprocessorDefinitions>%(PreprocessorDefinitions);WIN32;_WINDOWS;CMAKE_INTDIR="Debug"</PreprocessorDefinitions>
+      <ObjectFileName>$(IntDir)</ObjectFileName>
+      <ScanSourceForModuleDependencies>false</ScanSourceForModuleDependencies>
+    </ClCompile>
+    <ResourceCompile>
+      <PreprocessorDefinitions>%(PreprocessorDefinitions);WIN32;_DEBUG;_WINDOWS;CMAKE_INTDIR=\"Debug\"</PreprocessorDefinitions>
+      <AdditionalIncludeDirectories>C:\project_root\src;C:\project_root\vcpkg\installed\x64-windows\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+    </ResourceCompile>
+    <Midl>
+      <AdditionalIncludeDirectories>C:\project_root\src;C:\project_root\vcpkg\installed\x64-windows\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <OutputDirectory>$(ProjectDir)/$(IntDir)</OutputDirectory>
+      <HeaderFileName>%(Filename).h</HeaderFileName>
+      <TypeLibraryName>%(Filename).tlb</TypeLibraryName>
+      <InterfaceIdentifierFileName>%(Filename)_i.c</InterfaceIdentifierFileName>
+      <ProxyFileName>%(Filename)_p.c</ProxyFileName>
+    </Midl>
+    <PostBuildEvent>
+      <Message>	</Message>
+      <Command>setlocal
+"C:\Program Files\PowerShell\7\pwsh.exe" -noprofile -executionpolicy Bypass -file C:/project_root/vcpkg/scripts/buildsystems/msbuild/applocal.ps1 -targetBinary C:/project_root/build/Debug/MultiAppProgram.exe -installedDir C:/project_root/vcpkg/installed/x64-windows/debug/bin -OutVariable out
+if %errorlevel% neq 0 goto :cmEnd
+:cmEnd
+endlocal &amp; call :cmErrorLevel %errorlevel% &amp; goto :cmDone
+:cmErrorLevel
+exit /b %1
+:cmDone
+if %errorlevel% neq 0 goto :VCEnd
+setlocal
+C:\Users\haris\AppData\Local\Programs\Python\Python312\Lib\site-packages\cmake\data\bin\cmake.exe -E copy_directory C:/project_root/resources C:/project_root/build/Debug/resources
+if %errorlevel% neq 0 goto :cmEnd
+:cmEnd
+endlocal &amp; call :cmErrorLevel %errorlevel% &amp; goto :cmDone
+:cmErrorLevel
+exit /b %1
+:cmDone
+if %errorlevel% neq 0 goto :VCEnd</Command>
+    </PostBuildEvent>
+    <Link>
+      <AdditionalDependencies>C:\project_root\vcpkg\installed\x64-windows\debug\lib\sfml-graphics-d.lib;C:\project_root\vcpkg\installed\x64-windows\debug\lib\sfml-window-d.lib;C:\project_root\vcpkg\installed\x64-windows\debug\lib\sfml-system-d.lib;C:\project_root\vcpkg\installed\x64-windows\debug\lib\gdald.lib;C:\project_root\vcpkg\installed\x64-windows\debug\lib\sqlite3.lib;C:\project_root\vcpkg\installed\x64-windows\debug\lib\libcurl-d.lib;kernel32.lib;user32.lib;gdi32.lib;winspool.lib;shell32.lib;ole32.lib;oleaut32.lib;uuid.lib;comdlg32.lib;advapi32.lib</AdditionalDependencies>
+      <AdditionalLibraryDirectories>%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
+      <AdditionalOptions>%(AdditionalOptions) /machine:x64</AdditionalOptions>
+      <GenerateDebugInformation>true</GenerateDebugInformation>
+      <IgnoreSpecificDefaultLibraries>%(IgnoreSpecificDefaultLibraries)</IgnoreSpecificDefaultLibraries>
+      <ImportLibrary>C:/project_root/build/Debug/MultiAppProgram.lib</ImportLibrary>
+      <ProgramDataBaseFile>C:/project_root/build/Debug/MultiAppProgram.pdb</ProgramDataBaseFile>
+      <SubSystem>Console</SubSystem>
+    </Link>
+    <ProjectReference>
+      <LinkLibraryDependencies>false</LinkLibraryDependencies>
+    </ProjectReference>
+  </ItemDefinitionGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
+    <ClCompile>
+      <AdditionalIncludeDirectories>C:\project_root\src;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalOptions>%(AdditionalOptions) /external:I "C:/project_root/vcpkg/installed/x64-windows/include"</AdditionalOptions>
+      <AssemblerListingLocation>$(IntDir)</AssemblerListingLocation>
+      <BasicRuntimeChecks>Default</BasicRuntimeChecks>
+      <ExceptionHandling>Sync</ExceptionHandling>
+      <ExternalWarningLevel>TurnOffAllWarnings</ExternalWarningLevel>
+      <InlineFunctionExpansion>AnySuitable</InlineFunctionExpansion>
+      <LanguageStandard>stdcpp17</LanguageStandard>
+      <MinimalRebuild></MinimalRebuild>
+      <Optimization>MaxSpeed</Optimization>
+      <PrecompiledHeader>NotUsing</PrecompiledHeader>
+      <RuntimeLibrary>MultiThreadedDLL</RuntimeLibrary>
+      <RuntimeTypeInfo>true</RuntimeTypeInfo>
+      <SupportJustMyCode></SupportJustMyCode>
+      <UseFullPaths>false</UseFullPaths>
+      <PreprocessorDefinitions>%(PreprocessorDefinitions);WIN32;_WINDOWS;NDEBUG;CMAKE_INTDIR="Release"</PreprocessorDefinitions>
+      <ObjectFileName>$(IntDir)</ObjectFileName>
+      <DebugInformationFormat>
+      </DebugInformationFormat>
+      <ScanSourceForModuleDependencies>false</ScanSourceForModuleDependencies>
+    </ClCompile>
+    <ResourceCompile>
+      <PreprocessorDefinitions>%(PreprocessorDefinitions);WIN32;_WINDOWS;NDEBUG;CMAKE_INTDIR=\"Release\"</PreprocessorDefinitions>
+      <AdditionalIncludeDirectories>C:\project_root\src;C:\project_root\vcpkg\installed\x64-windows\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+    </ResourceCompile>
+    <Midl>
+      <AdditionalIncludeDirectories>C:\project_root\src;C:\project_root\vcpkg\installed\x64-windows\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <OutputDirectory>$(ProjectDir)/$(IntDir)</OutputDirectory>
+      <HeaderFileName>%(Filename).h</HeaderFileName>
+      <TypeLibraryName>%(Filename).tlb</TypeLibraryName>
+      <InterfaceIdentifierFileName>%(Filename)_i.c</InterfaceIdentifierFileName>
+      <ProxyFileName>%(Filename)_p.c</ProxyFileName>
+    </Midl>
+    <PostBuildEvent>
+      <Message>	</Message>
+      <Command>setlocal
+"C:\Program Files\PowerShell\7\pwsh.exe" -noprofile -executionpolicy Bypass -file C:/project_root/vcpkg/scripts/buildsystems/msbuild/applocal.ps1 -targetBinary C:/project_root/build/Release/MultiAppProgram.exe -installedDir C:/project_root/vcpkg/installed/x64-windows/bin -OutVariable out
+if %errorlevel% neq 0 goto :cmEnd
+:cmEnd
+endlocal &amp; call :cmErrorLevel %errorlevel% &amp; goto :cmDone
+:cmErrorLevel
+exit /b %1
+:cmDone
+if %errorlevel% neq 0 goto :VCEnd
+setlocal
+C:\Users\haris\AppData\Local\Programs\Python\Python312\Lib\site-packages\cmake\data\bin\cmake.exe -E copy_directory C:/project_root/resources C:/project_root/build/Release/resources
+if %errorlevel% neq 0 goto :cmEnd
+:cmEnd
+endlocal &amp; call :cmErrorLevel %errorlevel% &amp; goto :cmDone
+:cmErrorLevel
+exit /b %1
+:cmDone
+if %errorlevel% neq 0 goto :VCEnd</Command>
+    </PostBuildEvent>
+    <Link>
+      <AdditionalDependencies>C:\project_root\vcpkg\installed\x64-windows\lib\sfml-graphics.lib;C:\project_root\vcpkg\installed\x64-windows\lib\sfml-window.lib;C:\project_root\vcpkg\installed\x64-windows\lib\sfml-system.lib;C:\project_root\vcpkg\installed\x64-windows\lib\gdal.lib;C:\project_root\vcpkg\installed\x64-windows\debug\lib\sqlite3.lib;C:\project_root\vcpkg\installed\x64-windows\lib\libcurl.lib;kernel32.lib;user32.lib;gdi32.lib;winspool.lib;shell32.lib;ole32.lib;oleaut32.lib;uuid.lib;comdlg32.lib;advapi32.lib</AdditionalDependencies>
+      <AdditionalLibraryDirectories>%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
+      <AdditionalOptions>%(AdditionalOptions) /machine:x64</AdditionalOptions>
+      <GenerateDebugInformation>false</GenerateDebugInformation>
+      <IgnoreSpecificDefaultLibraries>%(IgnoreSpecificDefaultLibraries)</IgnoreSpecificDefaultLibraries>
+      <ImportLibrary>C:/project_root/build/Release/MultiAppProgram.lib</ImportLibrary>
+      <ProgramDataBaseFile>C:/project_root/build/Release/MultiAppProgram.pdb</ProgramDataBaseFile>
+      <SubSystem>Console</SubSystem>
+    </Link>
+    <ProjectReference>
+      <LinkLibraryDependencies>false</LinkLibraryDependencies>
+    </ProjectReference>
+  </ItemDefinitionGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='MinSizeRel|x64'">
+    <ClCompile>
+      <AdditionalIncludeDirectories>C:\project_root\src;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalOptions>%(AdditionalOptions) /external:I "C:/project_root/vcpkg/installed/x64-windows/include"</AdditionalOptions>
+      <AssemblerListingLocation>$(IntDir)</AssemblerListingLocation>
+      <BasicRuntimeChecks>Default</BasicRuntimeChecks>
+      <ExceptionHandling>Sync</ExceptionHandling>
+      <ExternalWarningLevel>TurnOffAllWarnings</ExternalWarningLevel>
+      <InlineFunctionExpansion>OnlyExplicitInline</InlineFunctionExpansion>
+      <LanguageStandard>stdcpp17</LanguageStandard>
+      <MinimalRebuild></MinimalRebuild>
+      <Optimization>MinSpace</Optimization>
+      <PrecompiledHeader>NotUsing</PrecompiledHeader>
+      <RuntimeLibrary>MultiThreadedDLL</RuntimeLibrary>
+      <RuntimeTypeInfo>true</RuntimeTypeInfo>
+      <SupportJustMyCode></SupportJustMyCode>
+      <UseFullPaths>false</UseFullPaths>
+      <PreprocessorDefinitions>%(PreprocessorDefinitions);WIN32;_WINDOWS;NDEBUG;CMAKE_INTDIR="MinSizeRel"</PreprocessorDefinitions>
+      <ObjectFileName>$(IntDir)</ObjectFileName>
+      <DebugInformationFormat>
+      </DebugInformationFormat>
+      <ScanSourceForModuleDependencies>false</ScanSourceForModuleDependencies>
+    </ClCompile>
+    <ResourceCompile>
+      <PreprocessorDefinitions>%(PreprocessorDefinitions);WIN32;_WINDOWS;NDEBUG;CMAKE_INTDIR=\"MinSizeRel\"</PreprocessorDefinitions>
+      <AdditionalIncludeDirectories>C:\project_root\src;C:\project_root\vcpkg\installed\x64-windows\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+    </ResourceCompile>
+    <Midl>
+      <AdditionalIncludeDirectories>C:\project_root\src;C:\project_root\vcpkg\installed\x64-windows\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <OutputDirectory>$(ProjectDir)/$(IntDir)</OutputDirectory>
+      <HeaderFileName>%(Filename).h</HeaderFileName>
+      <TypeLibraryName>%(Filename).tlb</TypeLibraryName>
+      <InterfaceIdentifierFileName>%(Filename)_i.c</InterfaceIdentifierFileName>
+      <ProxyFileName>%(Filename)_p.c</ProxyFileName>
+    </Midl>
+    <PostBuildEvent>
+      <Message>	</Message>
+      <Command>setlocal
+"C:\Program Files\PowerShell\7\pwsh.exe" -noprofile -executionpolicy Bypass -file C:/project_root/vcpkg/scripts/buildsystems/msbuild/applocal.ps1 -targetBinary C:/project_root/build/MinSizeRel/MultiAppProgram.exe -installedDir C:/project_root/vcpkg/installed/x64-windows/bin -OutVariable out
+if %errorlevel% neq 0 goto :cmEnd
+:cmEnd
+endlocal &amp; call :cmErrorLevel %errorlevel% &amp; goto :cmDone
+:cmErrorLevel
+exit /b %1
+:cmDone
+if %errorlevel% neq 0 goto :VCEnd
+setlocal
+C:\Users\haris\AppData\Local\Programs\Python\Python312\Lib\site-packages\cmake\data\bin\cmake.exe -E copy_directory C:/project_root/resources C:/project_root/build/MinSizeRel/resources
+if %errorlevel% neq 0 goto :cmEnd
+:cmEnd
+endlocal &amp; call :cmErrorLevel %errorlevel% &amp; goto :cmDone
+:cmErrorLevel
+exit /b %1
+:cmDone
+if %errorlevel% neq 0 goto :VCEnd</Command>
+    </PostBuildEvent>
+    <Link>
+      <AdditionalDependencies>C:\project_root\vcpkg\installed\x64-windows\lib\sfml-graphics.lib;C:\project_root\vcpkg\installed\x64-windows\lib\sfml-window.lib;C:\project_root\vcpkg\installed\x64-windows\lib\sfml-system.lib;C:\project_root\vcpkg\installed\x64-windows\lib\gdal.lib;C:\project_root\vcpkg\installed\x64-windows\debug\lib\sqlite3.lib;C:\project_root\vcpkg\installed\x64-windows\lib\libcurl.lib;kernel32.lib;user32.lib;gdi32.lib;winspool.lib;shell32.lib;ole32.lib;oleaut32.lib;uuid.lib;comdlg32.lib;advapi32.lib</AdditionalDependencies>
+      <AdditionalLibraryDirectories>%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
+      <AdditionalOptions>%(AdditionalOptions) /machine:x64</AdditionalOptions>
+      <GenerateDebugInformation>false</GenerateDebugInformation>
+      <IgnoreSpecificDefaultLibraries>%(IgnoreSpecificDefaultLibraries)</IgnoreSpecificDefaultLibraries>
+      <ImportLibrary>C:/project_root/build/MinSizeRel/MultiAppProgram.lib</ImportLibrary>
+      <ProgramDataBaseFile>C:/project_root/build/MinSizeRel/MultiAppProgram.pdb</ProgramDataBaseFile>
+      <SubSystem>Console</SubSystem>
+    </Link>
+    <ProjectReference>
+      <LinkLibraryDependencies>false</LinkLibraryDependencies>
+    </ProjectReference>
+  </ItemDefinitionGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='RelWithDebInfo|x64'">
+    <ClCompile>
+      <AdditionalIncludeDirectories>C:\project_root\src;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalOptions>%(AdditionalOptions) /external:I "C:/project_root/vcpkg/installed/x64-windows/include"</AdditionalOptions>
+      <AssemblerListingLocation>$(IntDir)</AssemblerListingLocation>
+      <BasicRuntimeChecks>Default</BasicRuntimeChecks>
+      <DebugInformationFormat>ProgramDatabase</DebugInformationFormat>
+      <ExceptionHandling>Sync</ExceptionHandling>
+      <ExternalWarningLevel>TurnOffAllWarnings</ExternalWarningLevel>
+      <InlineFunctionExpansion>OnlyExplicitInline</InlineFunctionExpansion>
+      <LanguageStandard>stdcpp17</LanguageStandard>
+      <MinimalRebuild></MinimalRebuild>
+      <Optimization>MaxSpeed</Optimization>
+      <PrecompiledHeader>NotUsing</PrecompiledHeader>
+      <RuntimeLibrary>MultiThreadedDLL</RuntimeLibrary>
+      <RuntimeTypeInfo>true</RuntimeTypeInfo>
+      <SupportJustMyCode></SupportJustMyCode>
+      <UseFullPaths>false</UseFullPaths>
+      <PreprocessorDefinitions>%(PreprocessorDefinitions);WIN32;_WINDOWS;NDEBUG;CMAKE_INTDIR="RelWithDebInfo"</PreprocessorDefinitions>
+      <ObjectFileName>$(IntDir)</ObjectFileName>
+      <ScanSourceForModuleDependencies>false</ScanSourceForModuleDependencies>
+    </ClCompile>
+    <ResourceCompile>
+      <PreprocessorDefinitions>%(PreprocessorDefinitions);WIN32;_WINDOWS;NDEBUG;CMAKE_INTDIR=\"RelWithDebInfo\"</PreprocessorDefinitions>
+      <AdditionalIncludeDirectories>C:\project_root\src;C:\project_root\vcpkg\installed\x64-windows\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+    </ResourceCompile>
+    <Midl>
+      <AdditionalIncludeDirectories>C:\project_root\src;C:\project_root\vcpkg\installed\x64-windows\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <OutputDirectory>$(ProjectDir)/$(IntDir)</OutputDirectory>
+      <HeaderFileName>%(Filename).h</HeaderFileName>
+      <TypeLibraryName>%(Filename).tlb</TypeLibraryName>
+      <InterfaceIdentifierFileName>%(Filename)_i.c</InterfaceIdentifierFileName>
+      <ProxyFileName>%(Filename)_p.c</ProxyFileName>
+    </Midl>
+    <PostBuildEvent>
+      <Message>	</Message>
+      <Command>setlocal
+"C:\Program Files\PowerShell\7\pwsh.exe" -noprofile -executionpolicy Bypass -file C:/project_root/vcpkg/scripts/buildsystems/msbuild/applocal.ps1 -targetBinary C:/project_root/build/RelWithDebInfo/MultiAppProgram.exe -installedDir C:/project_root/vcpkg/installed/x64-windows/bin -OutVariable out
+if %errorlevel% neq 0 goto :cmEnd
+:cmEnd
+endlocal &amp; call :cmErrorLevel %errorlevel% &amp; goto :cmDone
+:cmErrorLevel
+exit /b %1
+:cmDone
+if %errorlevel% neq 0 goto :VCEnd
+setlocal
+C:\Users\haris\AppData\Local\Programs\Python\Python312\Lib\site-packages\cmake\data\bin\cmake.exe -E copy_directory C:/project_root/resources C:/project_root/build/RelWithDebInfo/resources
+if %errorlevel% neq 0 goto :cmEnd
+:cmEnd
+endlocal &amp; call :cmErrorLevel %errorlevel% &amp; goto :cmDone
+:cmErrorLevel
+exit /b %1
+:cmDone
+if %errorlevel% neq 0 goto :VCEnd</Command>
+    </PostBuildEvent>
+    <Link>
+      <AdditionalDependencies>C:\project_root\vcpkg\installed\x64-windows\lib\sfml-graphics.lib;C:\project_root\vcpkg\installed\x64-windows\lib\sfml-window.lib;C:\project_root\vcpkg\installed\x64-windows\lib\sfml-system.lib;C:\project_root\vcpkg\installed\x64-windows\lib\gdal.lib;C:\project_root\vcpkg\installed\x64-windows\debug\lib\sqlite3.lib;C:\project_root\vcpkg\installed\x64-windows\lib\libcurl.lib;kernel32.lib;user32.lib;gdi32.lib;winspool.lib;shell32.lib;ole32.lib;oleaut32.lib;uuid.lib;comdlg32.lib;advapi32.lib</AdditionalDependencies>
+      <AdditionalLibraryDirectories>%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
+      <AdditionalOptions>%(AdditionalOptions) /machine:x64</AdditionalOptions>
+      <GenerateDebugInformation>true</GenerateDebugInformation>
+      <IgnoreSpecificDefaultLibraries>%(IgnoreSpecificDefaultLibraries)</IgnoreSpecificDefaultLibraries>
+      <ImportLibrary>C:/project_root/build/RelWithDebInfo/MultiAppProgram.lib</ImportLibrary>
+      <ProgramDataBaseFile>C:/project_root/build/RelWithDebInfo/MultiAppProgram.pdb</ProgramDataBaseFile>
+      <SubSystem>Console</SubSystem>
+    </Link>
+    <ProjectReference>
+      <LinkLibraryDependencies>false</LinkLibraryDependencies>
+    </ProjectReference>
+  </ItemDefinitionGroup>
+  <ItemGroup>
+    <CustomBuild Include="C:\project_root\CMakeLists.txt">
+      <UseUtf8Encoding>Always</UseUtf8Encoding>
+      <Message Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">Building Custom Rule C:/project_root/CMakeLists.txt</Message>
+      <Command Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">setlocal
+C:\Users\haris\AppData\Local\Programs\Python\Python312\Lib\site-packages\cmake\data\bin\cmake.exe -SC:/project_root -BC:/project_root/build --check-stamp-file C:/project_root/build/CMakeFiles/generate.stamp
+if %errorlevel% neq 0 goto :cmEnd
+:cmEnd
+endlocal &amp; call :cmErrorLevel %errorlevel% &amp; goto :cmDone
+:cmErrorLevel
+exit /b %1
+:cmDone
+if %errorlevel% neq 0 goto :VCEnd</Command>
+      <AdditionalInputs Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">C:\Users\haris\AppData\Local\Programs\Python\Python312\Lib\site-packages\cmake\data\share\cmake-3.30\Modules\CMakeCXXInformation.cmake;C:\Users\haris\AppData\Local\Programs\Python\Python312\Lib\site-packages\cmake\data\share\cmake-3.30\Modules\CMakeCommonLanguageInclude.cmake;C:\Users\haris\AppData\Local\Programs\Python\Python312\Lib\site-packages\cmake\data\share\cmake-3.30\Modules\CMakeDependentOption.cmake;C:\Users\haris\AppData\Local\Programs\Python\Python312\Lib\site-packages\cmake\data\share\cmake-3.30\Modules\CMakeFindDependencyMacro.cmake;C:\Users\haris\AppData\Local\Programs\Python\Python312\Lib\site-packages\cmake\data\share\cmake-3.30\Modules\CMakeGenericSystem.cmake;C:\Users\haris\AppData\Local\Programs\Python\Python312\Lib\site-packages\cmake\data\share\cmake-3.30\Modules\CMakeInitializeConfigs.cmake;C:\Users\haris\AppData\Local\Programs\Python\Python312\Lib\site-packages\cmake\data\share\cmake-3.30\Modules\CMakeLanguageInformation.cmake;C:\Users\haris\AppData\Local\Programs\Python\Python312\Lib\site-packages\cmake\data\share\cmake-3.30\Modules\CMakeRCInformation.cmake;C:\Users\haris\AppData\Local\Programs\Python\Python312\Lib\site-packages\cmake\data\share\cmake-3.30\Modules\CMakeSystemSpecificInformation.cmake;C:\Users\haris\AppData\Local\Programs\Python\Python312\Lib\site-packages\cmake\data\share\cmake-3.30\Modules\CMakeSystemSpecificInitialize.cmake;C:\Users\haris\AppData\Local\Programs\Python\Python312\Lib\site-packages\cmake\data\share\cmake-3.30\Modules\Compiler\CMakeCommonCompilerMacros.cmake;C:\Users\haris\AppData\Local\Programs\Python\Python312\Lib\site-packages\cmake\data\share\cmake-3.30\Modules\Compiler\MSVC-CXX.cmake;C:\Users\haris\AppData\Local\Programs\Python\Python312\Lib\site-packages\cmake\data\share\cmake-3.30\Modules\Compiler\MSVC.cmake;C:\Users\haris\AppData\Local\Programs\Python\Python312\Lib\site-packages\cmake\data\share\cmake-3.30\Modules\FindBoost.cmake;C:\Users\haris\AppData\Local\Programs\Python\Python312\Lib\site-packages\cmake\data\share\cmake-3.30\Modules\FindPackageHandleStandardArgs.cmake;C:\Users\haris\AppData\Local\Programs\Python\Python312\Lib\site-packages\cmake\data\share\cmake-3.30\Modules\FindPackageMessage.cmake;C:\Users\haris\AppData\Local\Programs\Python\Python312\Lib\site-packages\cmake\data\share\cmake-3.30\Modules\FindPkgConfig.cmake;C:\Users\haris\AppData\Local\Programs\Python\Python312\Lib\site-packages\cmake\data\share\cmake-3.30\Modules\FindSQLite3.cmake;C:\Users\haris\AppData\Local\Programs\Python\Python312\Lib\site-packages\cmake\data\share\cmake-3.30\Modules\FindZLIB.cmake;C:\Users\haris\AppData\Local\Programs\Python\Python312\Lib\site-packages\cmake\data\share\cmake-3.30\Modules\Platform\Windows-Initialize.cmake;C:\Users\haris\AppData\Local\Programs\Python\Python312\Lib\site-packages\cmake\data\share\cmake-3.30\Modules\Platform\Windows-MSVC-CXX.cmake;C:\Users\haris\AppData\Local\Programs\Python\Python312\Lib\site-packages\cmake\data\share\cmake-3.30\Modules\Platform\Windows-MSVC.cmake;C:\Users\haris\AppData\Local\Programs\Python\Python312\Lib\site-packages\cmake\data\share\cmake-3.30\Modules\Platform\Windows.cmake;C:\Users\haris\AppData\Local\Programs\Python\Python312\Lib\site-packages\cmake\data\share\cmake-3.30\Modules\Platform\WindowsPaths.cmake;C:\Users\haris\AppData\Local\Programs\Python\Python312\Lib\site-packages\cmake\data\share\cmake-3.30\Modules\SelectLibraryConfigurations.cmake;C:\project_root\build\CMakeFiles\3.30.3\CMakeCXXCompiler.cmake;C:\project_root\build\CMakeFiles\3.30.3\CMakeRCCompiler.cmake;C:\project_root\build\CMakeFiles\3.30.3\CMakeSystem.cmake;C:\project_root\vcpkg\installed\x64-windows\share\boost\BoostConfig.cmake;C:\project_root\vcpkg\installed\x64-windows\share\boost\BoostConfigVersion.cmake;C:\project_root\vcpkg\installed\x64-windows\share\boost\vcpkg-cmake-wrapper.cmake;C:\project_root\vcpkg\installed\x64-windows\share\boost_headers\boost_headers-config-version.cmake;C:\project_root\vcpkg\installed\x64-windows\share\boost_headers\boost_headers-config.cmake;C:\project_root\vcpkg\installed\x64-windows\share\boost_headers\boost_headers-targets.cmake;C:\project_root\vcpkg\installed\x64-windows\share\curl\CURLConfig.cmake;C:\project_root\vcpkg\installed\x64-windows\share\curl\CURLConfigVersion.cmake;C:\project_root\vcpkg\installed\x64-windows\share\curl\CURLTargets-debug.cmake;C:\project_root\vcpkg\installed\x64-windows\share\curl\CURLTargets-release.cmake;C:\project_root\vcpkg\installed\x64-windows\share\curl\CURLTargets.cmake;C:\project_root\vcpkg\installed\x64-windows\share\curl\vcpkg-cmake-wrapper.cmake;C:\project_root\vcpkg\installed\x64-windows\share\gdal\GDAL-targets-debug.cmake;C:\project_root\vcpkg\installed\x64-windows\share\gdal\GDAL-targets-release.cmake;C:\project_root\vcpkg\installed\x64-windows\share\gdal\GDAL-targets.cmake;C:\project_root\vcpkg\installed\x64-windows\share\gdal\GDALConfig.cmake;C:\project_root\vcpkg\installed\x64-windows\share\gdal\GDALConfigVersion.cmake;C:\project_root\vcpkg\installed\x64-windows\share\gdal\vcpkg-cmake-wrapper.cmake;C:\project_root\vcpkg\installed\x64-windows\share\sfml\SFMLConfig.cmake;C:\project_root\vcpkg\installed\x64-windows\share\sfml\SFMLConfigDependencies.cmake;C:\project_root\vcpkg\installed\x64-windows\share\sfml\SFMLConfigVersion.cmake;C:\project_root\vcpkg\installed\x64-windows\share\sfml\SFMLSharedTargets-debug.cmake;C:\project_root\vcpkg\installed\x64-windows\share\sfml\SFMLSharedTargets-release.cmake;C:\project_root\vcpkg\installed\x64-windows\share\sfml\SFMLSharedTargets.cmake;C:\project_root\vcpkg\installed\x64-windows\share\zlib\vcpkg-cmake-wrapper.cmake;C:\project_root\vcpkg\scripts\buildsystems\vcpkg.cmake;%(AdditionalInputs)</AdditionalInputs>
+      <Outputs Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">C:\project_root\build\CMakeFiles\generate.stamp</Outputs>
+      <LinkObjects Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">false</LinkObjects>
+      <Message Condition="'$(Configuration)|$(Platform)'=='Release|x64'">Building Custom Rule C:/project_root/CMakeLists.txt</Message>
+      <Command Condition="'$(Configuration)|$(Platform)'=='Release|x64'">setlocal
+C:\Users\haris\AppData\Local\Programs\Python\Python312\Lib\site-packages\cmake\data\bin\cmake.exe -SC:/project_root -BC:/project_root/build --check-stamp-file C:/project_root/build/CMakeFiles/generate.stamp
+if %errorlevel% neq 0 goto :cmEnd
+:cmEnd
+endlocal &amp; call :cmErrorLevel %errorlevel% &amp; goto :cmDone
+:cmErrorLevel
+exit /b %1
+:cmDone
+if %errorlevel% neq 0 goto :VCEnd</Command>
+      <AdditionalInputs Condition="'$(Configuration)|$(Platform)'=='Release|x64'">C:\Users\haris\AppData\Local\Programs\Python\Python312\Lib\site-packages\cmake\data\share\cmake-3.30\Modules\CMakeCXXInformation.cmake;C:\Users\haris\AppData\Local\Programs\Python\Python312\Lib\site-packages\cmake\data\share\cmake-3.30\Modules\CMakeCommonLanguageInclude.cmake;C:\Users\haris\AppData\Local\Programs\Python\Python312\Lib\site-packages\cmake\data\share\cmake-3.30\Modules\CMakeDependentOption.cmake;C:\Users\haris\AppData\Local\Programs\Python\Python312\Lib\site-packages\cmake\data\share\cmake-3.30\Modules\CMakeFindDependencyMacro.cmake;C:\Users\haris\AppData\Local\Programs\Python\Python312\Lib\site-packages\cmake\data\share\cmake-3.30\Modules\CMakeGenericSystem.cmake;C:\Users\haris\AppData\Local\Programs\Python\Python312\Lib\site-packages\cmake\data\share\cmake-3.30\Modules\CMakeInitializeConfigs.cmake;C:\Users\haris\AppData\Local\Programs\Python\Python312\Lib\site-packages\cmake\data\share\cmake-3.30\Modules\CMakeLanguageInformation.cmake;C:\Users\haris\AppData\Local\Programs\Python\Python312\Lib\site-packages\cmake\data\share\cmake-3.30\Modules\CMakeRCInformation.cmake;C:\Users\haris\AppData\Local\Programs\Python\Python312\Lib\site-packages\cmake\data\share\cmake-3.30\Modules\CMakeSystemSpecificInformation.cmake;C:\Users\haris\AppData\Local\Programs\Python\Python312\Lib\site-packages\cmake\data\share\cmake-3.30\Modules\CMakeSystemSpecificInitialize.cmake;C:\Users\haris\AppData\Local\Programs\Python\Python312\Lib\site-packages\cmake\data\share\cmake-3.30\Modules\Compiler\CMakeCommonCompilerMacros.cmake;C:\Users\haris\AppData\Local\Programs\Python\Python312\Lib\site-packages\cmake\data\share\cmake-3.30\Modules\Compiler\MSVC-CXX.cmake;C:\Users\haris\AppData\Local\Programs\Python\Python312\Lib\site-packages\cmake\data\share\cmake-3.30\Modules\Compiler\MSVC.cmake;C:\Users\haris\AppData\Local\Programs\Python\Python312\Lib\site-packages\cmake\data\share\cmake-3.30\Modules\FindBoost.cmake;C:\Users\haris\AppData\Local\Programs\Python\Python312\Lib\site-packages\cmake\data\share\cmake-3.30\Modules\FindPackageHandleStandardArgs.cmake;C:\Users\haris\AppData\Local\Programs\Python\Python312\Lib\site-packages\cmake\data\share\cmake-3.30\Modules\FindPackageMessage.cmake;C:\Users\haris\AppData\Local\Programs\Python\Python312\Lib\site-packages\cmake\data\share\cmake-3.30\Modules\FindPkgConfig.cmake;C:\Users\haris\AppData\Local\Programs\Python\Python312\Lib\site-packages\cmake\data\share\cmake-3.30\Modules\FindSQLite3.cmake;C:\Users\haris\AppData\Local\Programs\Python\Python312\Lib\site-packages\cmake\data\share\cmake-3.30\Modules\FindZLIB.cmake;C:\Users\haris\AppData\Local\Programs\Python\Python312\Lib\site-packages\cmake\data\share\cmake-3.30\Modules\Platform\Windows-Initialize.cmake;C:\Users\haris\AppData\Local\Programs\Python\Python312\Lib\site-packages\cmake\data\share\cmake-3.30\Modules\Platform\Windows-MSVC-CXX.cmake;C:\Users\haris\AppData\Local\Programs\Python\Python312\Lib\site-packages\cmake\data\share\cmake-3.30\Modules\Platform\Windows-MSVC.cmake;C:\Users\haris\AppData\Local\Programs\Python\Python312\Lib\site-packages\cmake\data\share\cmake-3.30\Modules\Platform\Windows.cmake;C:\Users\haris\AppData\Local\Programs\Python\Python312\Lib\site-packages\cmake\data\share\cmake-3.30\Modules\Platform\WindowsPaths.cmake;C:\Users\haris\AppData\Local\Programs\Python\Python312\Lib\site-packages\cmake\data\share\cmake-3.30\Modules\SelectLibraryConfigurations.cmake;C:\project_root\build\CMakeFiles\3.30.3\CMakeCXXCompiler.cmake;C:\project_root\build\CMakeFiles\3.30.3\CMakeRCCompiler.cmake;C:\project_root\build\CMakeFiles\3.30.3\CMakeSystem.cmake;C:\project_root\vcpkg\installed\x64-windows\share\boost\BoostConfig.cmake;C:\project_root\vcpkg\installed\x64-windows\share\boost\BoostConfigVersion.cmake;C:\project_root\vcpkg\installed\x64-windows\share\boost\vcpkg-cmake-wrapper.cmake;C:\project_root\vcpkg\installed\x64-windows\share\boost_headers\boost_headers-config-version.cmake;C:\project_root\vcpkg\installed\x64-windows\share\boost_headers\boost_headers-config.cmake;C:\project_root\vcpkg\installed\x64-windows\share\boost_headers\boost_headers-targets.cmake;C:\project_root\vcpkg\installed\x64-windows\share\curl\CURLConfig.cmake;C:\project_root\vcpkg\installed\x64-windows\share\curl\CURLConfigVersion.cmake;C:\project_root\vcpkg\installed\x64-windows\share\curl\CURLTargets-debug.cmake;C:\project_root\vcpkg\installed\x64-windows\share\curl\CURLTargets-release.cmake;C:\project_root\vcpkg\installed\x64-windows\share\curl\CURLTargets.cmake;C:\project_root\vcpkg\installed\x64-windows\share\curl\vcpkg-cmake-wrapper.cmake;C:\project_root\vcpkg\installed\x64-windows\share\gdal\GDAL-targets-debug.cmake;C:\project_root\vcpkg\installed\x64-windows\share\gdal\GDAL-targets-release.cmake;C:\project_root\vcpkg\installed\x64-windows\share\gdal\GDAL-targets.cmake;C:\project_root\vcpkg\installed\x64-windows\share\gdal\GDALConfig.cmake;C:\project_root\vcpkg\installed\x64-windows\share\gdal\GDALConfigVersion.cmake;C:\project_root\vcpkg\installed\x64-windows\share\gdal\vcpkg-cmake-wrapper.cmake;C:\project_root\vcpkg\installed\x64-windows\share\sfml\SFMLConfig.cmake;C:\project_root\vcpkg\installed\x64-windows\share\sfml\SFMLConfigDependencies.cmake;C:\project_root\vcpkg\installed\x64-windows\share\sfml\SFMLConfigVersion.cmake;C:\project_root\vcpkg\installed\x64-windows\share\sfml\SFMLSharedTargets-debug.cmake;C:\project_root\vcpkg\installed\x64-windows\share\sfml\SFMLSharedTargets-release.cmake;C:\project_root\vcpkg\installed\x64-windows\share\sfml\SFMLSharedTargets.cmake;C:\project_root\vcpkg\installed\x64-windows\share\zlib\vcpkg-cmake-wrapper.cmake;C:\project_root\vcpkg\scripts\buildsystems\vcpkg.cmake;%(AdditionalInputs)</AdditionalInputs>
+      <Outputs Condition="'$(Configuration)|$(Platform)'=='Release|x64'">C:\project_root\build\CMakeFiles\generate.stamp</Outputs>
+      <LinkObjects Condition="'$(Configuration)|$(Platform)'=='Release|x64'">false</LinkObjects>
+      <Message Condition="'$(Configuration)|$(Platform)'=='MinSizeRel|x64'">Building Custom Rule C:/project_root/CMakeLists.txt</Message>
+      <Command Condition="'$(Configuration)|$(Platform)'=='MinSizeRel|x64'">setlocal
+C:\Users\haris\AppData\Local\Programs\Python\Python312\Lib\site-packages\cmake\data\bin\cmake.exe -SC:/project_root -BC:/project_root/build --check-stamp-file C:/project_root/build/CMakeFiles/generate.stamp
+if %errorlevel% neq 0 goto :cmEnd
+:cmEnd
+endlocal &amp; call :cmErrorLevel %errorlevel% &amp; goto :cmDone
+:cmErrorLevel
+exit /b %1
+:cmDone
+if %errorlevel% neq 0 goto :VCEnd</Command>
+      <AdditionalInputs Condition="'$(Configuration)|$(Platform)'=='MinSizeRel|x64'">C:\Users\haris\AppData\Local\Programs\Python\Python312\Lib\site-packages\cmake\data\share\cmake-3.30\Modules\CMakeCXXInformation.cmake;C:\Users\haris\AppData\Local\Programs\Python\Python312\Lib\site-packages\cmake\data\share\cmake-3.30\Modules\CMakeCommonLanguageInclude.cmake;C:\Users\haris\AppData\Local\Programs\Python\Python312\Lib\site-packages\cmake\data\share\cmake-3.30\Modules\CMakeDependentOption.cmake;C:\Users\haris\AppData\Local\Programs\Python\Python312\Lib\site-packages\cmake\data\share\cmake-3.30\Modules\CMakeFindDependencyMacro.cmake;C:\Users\haris\AppData\Local\Programs\Python\Python312\Lib\site-packages\cmake\data\share\cmake-3.30\Modules\CMakeGenericSystem.cmake;C:\Users\haris\AppData\Local\Programs\Python\Python312\Lib\site-packages\cmake\data\share\cmake-3.30\Modules\CMakeInitializeConfigs.cmake;C:\Users\haris\AppData\Local\Programs\Python\Python312\Lib\site-packages\cmake\data\share\cmake-3.30\Modules\CMakeLanguageInformation.cmake;C:\Users\haris\AppData\Local\Programs\Python\Python312\Lib\site-packages\cmake\data\share\cmake-3.30\Modules\CMakeRCInformation.cmake;C:\Users\haris\AppData\Local\Programs\Python\Python312\Lib\site-packages\cmake\data\share\cmake-3.30\Modules\CMakeSystemSpecificInformation.cmake;C:\Users\haris\AppData\Local\Programs\Python\Python312\Lib\site-packages\cmake\data\share\cmake-3.30\Modules\CMakeSystemSpecificInitialize.cmake;C:\Users\haris\AppData\Local\Programs\Python\Python312\Lib\site-packages\cmake\data\share\cmake-3.30\Modules\Compiler\CMakeCommonCompilerMacros.cmake;C:\Users\haris\AppData\Local\Programs\Python\Python312\Lib\site-packages\cmake\data\share\cmake-3.30\Modules\Compiler\MSVC-CXX.cmake;C:\Users\haris\AppData\Local\Programs\Python\Python312\Lib\site-packages\cmake\data\share\cmake-3.30\Modules\Compiler\MSVC.cmake;C:\Users\haris\AppData\Local\Programs\Python\Python312\Lib\site-packages\cmake\data\share\cmake-3.30\Modules\FindBoost.cmake;C:\Users\haris\AppData\Local\Programs\Python\Python312\Lib\site-packages\cmake\data\share\cmake-3.30\Modules\FindPackageHandleStandardArgs.cmake;C:\Users\haris\AppData\Local\Programs\Python\Python312\Lib\site-packages\cmake\data\share\cmake-3.30\Modules\FindPackageMessage.cmake;C:\Users\haris\AppData\Local\Programs\Python\Python312\Lib\site-packages\cmake\data\share\cmake-3.30\Modules\FindPkgConfig.cmake;C:\Users\haris\AppData\Local\Programs\Python\Python312\Lib\site-packages\cmake\data\share\cmake-3.30\Modules\FindSQLite3.cmake;C:\Users\haris\AppData\Local\Programs\Python\Python312\Lib\site-packages\cmake\data\share\cmake-3.30\Modules\FindZLIB.cmake;C:\Users\haris\AppData\Local\Programs\Python\Python312\Lib\site-packages\cmake\data\share\cmake-3.30\Modules\Platform\Windows-Initialize.cmake;C:\Users\haris\AppData\Local\Programs\Python\Python312\Lib\site-packages\cmake\data\share\cmake-3.30\Modules\Platform\Windows-MSVC-CXX.cmake;C:\Users\haris\AppData\Local\Programs\Python\Python312\Lib\site-packages\cmake\data\share\cmake-3.30\Modules\Platform\Windows-MSVC.cmake;C:\Users\haris\AppData\Local\Programs\Python\Python312\Lib\site-packages\cmake\data\share\cmake-3.30\Modules\Platform\Windows.cmake;C:\Users\haris\AppData\Local\Programs\Python\Python312\Lib\site-packages\cmake\data\share\cmake-3.30\Modules\Platform\WindowsPaths.cmake;C:\Users\haris\AppData\Local\Programs\Python\Python312\Lib\site-packages\cmake\data\share\cmake-3.30\Modules\SelectLibraryConfigurations.cmake;C:\project_root\build\CMakeFiles\3.30.3\CMakeCXXCompiler.cmake;C:\project_root\build\CMakeFiles\3.30.3\CMakeRCCompiler.cmake;C:\project_root\build\CMakeFiles\3.30.3\CMakeSystem.cmake;C:\project_root\vcpkg\installed\x64-windows\share\boost\BoostConfig.cmake;C:\project_root\vcpkg\installed\x64-windows\share\boost\BoostConfigVersion.cmake;C:\project_root\vcpkg\installed\x64-windows\share\boost\vcpkg-cmake-wrapper.cmake;C:\project_root\vcpkg\installed\x64-windows\share\boost_headers\boost_headers-config-version.cmake;C:\project_root\vcpkg\installed\x64-windows\share\boost_headers\boost_headers-config.cmake;C:\project_root\vcpkg\installed\x64-windows\share\boost_headers\boost_headers-targets.cmake;C:\project_root\vcpkg\installed\x64-windows\share\curl\CURLConfig.cmake;C:\project_root\vcpkg\installed\x64-windows\share\curl\CURLConfigVersion.cmake;C:\project_root\vcpkg\installed\x64-windows\share\curl\CURLTargets-debug.cmake;C:\project_root\vcpkg\installed\x64-windows\share\curl\CURLTargets-release.cmake;C:\project_root\vcpkg\installed\x64-windows\share\curl\CURLTargets.cmake;C:\project_root\vcpkg\installed\x64-windows\share\curl\vcpkg-cmake-wrapper.cmake;C:\project_root\vcpkg\installed\x64-windows\share\gdal\GDAL-targets-debug.cmake;C:\project_root\vcpkg\installed\x64-windows\share\gdal\GDAL-targets-release.cmake;C:\project_root\vcpkg\installed\x64-windows\share\gdal\GDAL-targets.cmake;C:\project_root\vcpkg\installed\x64-windows\share\gdal\GDALConfig.cmake;C:\project_root\vcpkg\installed\x64-windows\share\gdal\GDALConfigVersion.cmake;C:\project_root\vcpkg\installed\x64-windows\share\gdal\vcpkg-cmake-wrapper.cmake;C:\project_root\vcpkg\installed\x64-windows\share\sfml\SFMLConfig.cmake;C:\project_root\vcpkg\installed\x64-windows\share\sfml\SFMLConfigDependencies.cmake;C:\project_root\vcpkg\installed\x64-windows\share\sfml\SFMLConfigVersion.cmake;C:\project_root\vcpkg\installed\x64-windows\share\sfml\SFMLSharedTargets-debug.cmake;C:\project_root\vcpkg\installed\x64-windows\share\sfml\SFMLSharedTargets-release.cmake;C:\project_root\vcpkg\installed\x64-windows\share\sfml\SFMLSharedTargets.cmake;C:\project_root\vcpkg\installed\x64-windows\share\zlib\vcpkg-cmake-wrapper.cmake;C:\project_root\vcpkg\scripts\buildsystems\vcpkg.cmake;%(AdditionalInputs)</AdditionalInputs>
+      <Outputs Condition="'$(Configuration)|$(Platform)'=='MinSizeRel|x64'">C:\project_root\build\CMakeFiles\generate.stamp</Outputs>
+      <LinkObjects Condition="'$(Configuration)|$(Platform)'=='MinSizeRel|x64'">false</LinkObjects>
+      <Message Condition="'$(Configuration)|$(Platform)'=='RelWithDebInfo|x64'">Building Custom Rule C:/project_root/CMakeLists.txt</Message>
+      <Command Condition="'$(Configuration)|$(Platform)'=='RelWithDebInfo|x64'">setlocal
+C:\Users\haris\AppData\Local\Programs\Python\Python312\Lib\site-packages\cmake\data\bin\cmake.exe -SC:/project_root -BC:/project_root/build --check-stamp-file C:/project_root/build/CMakeFiles/generate.stamp
+if %errorlevel% neq 0 goto :cmEnd
+:cmEnd
+endlocal &amp; call :cmErrorLevel %errorlevel% &amp; goto :cmDone
+:cmErrorLevel
+exit /b %1
+:cmDone
+if %errorlevel% neq 0 goto :VCEnd</Command>
+      <AdditionalInputs Condition="'$(Configuration)|$(Platform)'=='RelWithDebInfo|x64'">C:\Users\haris\AppData\Local\Programs\Python\Python312\Lib\site-packages\cmake\data\share\cmake-3.30\Modules\CMakeCXXInformation.cmake;C:\Users\haris\AppData\Local\Programs\Python\Python312\Lib\site-packages\cmake\data\share\cmake-3.30\Modules\CMakeCommonLanguageInclude.cmake;C:\Users\haris\AppData\Local\Programs\Python\Python312\Lib\site-packages\cmake\data\share\cmake-3.30\Modules\CMakeDependentOption.cmake;C:\Users\haris\AppData\Local\Programs\Python\Python312\Lib\site-packages\cmake\data\share\cmake-3.30\Modules\CMakeFindDependencyMacro.cmake;C:\Users\haris\AppData\Local\Programs\Python\Python312\Lib\site-packages\cmake\data\share\cmake-3.30\Modules\CMakeGenericSystem.cmake;C:\Users\haris\AppData\Local\Programs\Python\Python312\Lib\site-packages\cmake\data\share\cmake-3.30\Modules\CMakeInitializeConfigs.cmake;C:\Users\haris\AppData\Local\Programs\Python\Python312\Lib\site-packages\cmake\data\share\cmake-3.30\Modules\CMakeLanguageInformation.cmake;C:\Users\haris\AppData\Local\Programs\Python\Python312\Lib\site-packages\cmake\data\share\cmake-3.30\Modules\CMakeRCInformation.cmake;C:\Users\haris\AppData\Local\Programs\Python\Python312\Lib\site-packages\cmake\data\share\cmake-3.30\Modules\CMakeSystemSpecificInformation.cmake;C:\Users\haris\AppData\Local\Programs\Python\Python312\Lib\site-packages\cmake\data\share\cmake-3.30\Modules\CMakeSystemSpecificInitialize.cmake;C:\Users\haris\AppData\Local\Programs\Python\Python312\Lib\site-packages\cmake\data\share\cmake-3.30\Modules\Compiler\CMakeCommonCompilerMacros.cmake;C:\Users\haris\AppData\Local\Programs\Python\Python312\Lib\site-packages\cmake\data\share\cmake-3.30\Modules\Compiler\MSVC-CXX.cmake;C:\Users\haris\AppData\Local\Programs\Python\Python312\Lib\site-packages\cmake\data\share\cmake-3.30\Modules\Compiler\MSVC.cmake;C:\Users\haris\AppData\Local\Programs\Python\Python312\Lib\site-packages\cmake\data\share\cmake-3.30\Modules\FindBoost.cmake;C:\Users\haris\AppData\Local\Programs\Python\Python312\Lib\site-packages\cmake\data\share\cmake-3.30\Modules\FindPackageHandleStandardArgs.cmake;C:\Users\haris\AppData\Local\Programs\Python\Python312\Lib\site-packages\cmake\data\share\cmake-3.30\Modules\FindPackageMessage.cmake;C:\Users\haris\AppData\Local\Programs\Python\Python312\Lib\site-packages\cmake\data\share\cmake-3.30\Modules\FindPkgConfig.cmake;C:\Users\haris\AppData\Local\Programs\Python\Python312\Lib\site-packages\cmake\data\share\cmake-3.30\Modules\FindSQLite3.cmake;C:\Users\haris\AppData\Local\Programs\Python\Python312\Lib\site-packages\cmake\data\share\cmake-3.30\Modules\FindZLIB.cmake;C:\Users\haris\AppData\Local\Programs\Python\Python312\Lib\site-packages\cmake\data\share\cmake-3.30\Modules\Platform\Windows-Initialize.cmake;C:\Users\haris\AppData\Local\Programs\Python\Python312\Lib\site-packages\cmake\data\share\cmake-3.30\Modules\Platform\Windows-MSVC-CXX.cmake;C:\Users\haris\AppData\Local\Programs\Python\Python312\Lib\site-packages\cmake\data\share\cmake-3.30\Modules\Platform\Windows-MSVC.cmake;C:\Users\haris\AppData\Local\Programs\Python\Python312\Lib\site-packages\cmake\data\share\cmake-3.30\Modules\Platform\Windows.cmake;C:\Users\haris\AppData\Local\Programs\Python\Python312\Lib\site-packages\cmake\data\share\cmake-3.30\Modules\Platform\WindowsPaths.cmake;C:\Users\haris\AppData\Local\Programs\Python\Python312\Lib\site-packages\cmake\data\share\cmake-3.30\Modules\SelectLibraryConfigurations.cmake;C:\project_root\build\CMakeFiles\3.30.3\CMakeCXXCompiler.cmake;C:\project_root\build\CMakeFiles\3.30.3\CMakeRCCompiler.cmake;C:\project_root\build\CMakeFiles\3.30.3\CMakeSystem.cmake;C:\project_root\vcpkg\installed\x64-windows\share\boost\BoostConfig.cmake;C:\project_root\vcpkg\installed\x64-windows\share\boost\BoostConfigVersion.cmake;C:\project_root\vcpkg\installed\x64-windows\share\boost\vcpkg-cmake-wrapper.cmake;C:\project_root\vcpkg\installed\x64-windows\share\boost_headers\boost_headers-config-version.cmake;C:\project_root\vcpkg\installed\x64-windows\share\boost_headers\boost_headers-config.cmake;C:\project_root\vcpkg\installed\x64-windows\share\boost_headers\boost_headers-targets.cmake;C:\project_root\vcpkg\installed\x64-windows\share\curl\CURLConfig.cmake;C:\project_root\vcpkg\installed\x64-windows\share\curl\CURLConfigVersion.cmake;C:\project_root\vcpkg\installed\x64-windows\share\curl\CURLTargets-debug.cmake;C:\project_root\vcpkg\installed\x64-windows\share\curl\CURLTargets-release.cmake;C:\project_root\vcpkg\installed\x64-windows\share\curl\CURLTargets.cmake;C:\project_root\vcpkg\installed\x64-windows\share\curl\vcpkg-cmake-wrapper.cmake;C:\project_root\vcpkg\installed\x64-windows\share\gdal\GDAL-targets-debug.cmake;C:\project_root\vcpkg\installed\x64-windows\share\gdal\GDAL-targets-release.cmake;C:\project_root\vcpkg\installed\x64-windows\share\gdal\GDAL-targets.cmake;C:\project_root\vcpkg\installed\x64-windows\share\gdal\GDALConfig.cmake;C:\project_root\vcpkg\installed\x64-windows\share\gdal\GDALConfigVersion.cmake;C:\project_root\vcpkg\installed\x64-windows\share\gdal\vcpkg-cmake-wrapper.cmake;C:\project_root\vcpkg\installed\x64-windows\share\sfml\SFMLConfig.cmake;C:\project_root\vcpkg\installed\x64-windows\share\sfml\SFMLConfigDependencies.cmake;C:\project_root\vcpkg\installed\x64-windows\share\sfml\SFMLConfigVersion.cmake;C:\project_root\vcpkg\installed\x64-windows\share\sfml\SFMLSharedTargets-debug.cmake;C:\project_root\vcpkg\installed\x64-windows\share\sfml\SFMLSharedTargets-release.cmake;C:\project_root\vcpkg\installed\x64-windows\share\sfml\SFMLSharedTargets.cmake;C:\project_root\vcpkg\installed\x64-windows\share\zlib\vcpkg-cmake-wrapper.cmake;C:\project_root\vcpkg\scripts\buildsystems\vcpkg.cmake;%(AdditionalInputs)</AdditionalInputs>
+      <Outputs Condition="'$(Configuration)|$(Platform)'=='RelWithDebInfo|x64'">C:\project_root\build\CMakeFiles\generate.stamp</Outputs>
+      <LinkObjects Condition="'$(Configuration)|$(Platform)'=='RelWithDebInfo|x64'">false</LinkObjects>
+    </CustomBuild>
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="C:\project_root\src\camera\camera.cpp" />
+    <ClCompile Include="C:\project_root\src\chatbot\chatbot.cpp" />
+    <ClCompile Include="C:\project_root\src\database\database.cpp" />
+    <ClCompile Include="C:\project_root\src\main.cpp" />
+    <ClCompile Include="C:\project_root\src\mainwindow\mainwindow.cpp" />
+    <ClCompile Include="C:\project_root\src\map\map.cpp" />
+    <ClCompile Include="C:\project_root\src\settings\settings.cpp" />
+    <ClCompile Include="C:\project_root\src\utils\weather.cpp" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="C:\project_root\build\ZERO_CHECK.vcxproj">
+      <Project>{60198265-B7E7-31EB-8848-23E2F0C51515}</Project>
+      <Name>ZERO_CHECK</Name>
+      <ReferenceOutputAssembly>false</ReferenceOutputAssembly>
+      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+    </ProjectReference>
+  </ItemGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
+  <ImportGroup Label="ExtensionTargets">
+  </ImportGroup>
+</Project>
