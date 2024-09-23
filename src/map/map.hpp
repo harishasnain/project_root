@@ -13,7 +13,9 @@ public:
     ~Map();
 
     void handleEvent(const sf::Event& event);
-    void draw();
+    void draw(sf::RenderWindow& window);
+    void resetShouldExit() { m_shouldExit = false;}
+    bool shouldReturnToMain() const { return m_shouldExit; }
 
 private:
     sf::RenderWindow& m_window;
@@ -27,6 +29,7 @@ private:
     bool m_isLayersPanelOpen;
     bool m_isSecondaryPanelOpen;
     bool m_isSearchActive;
+    bool m_shouldExit = false;
 
     sf::RectangleShape m_layersPanel;
     sf::RectangleShape m_secondaryPanel;

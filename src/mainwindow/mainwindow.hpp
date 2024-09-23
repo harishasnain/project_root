@@ -14,7 +14,7 @@ class MainWindow {
 public:
     MainWindow(sf::RenderWindow& window);
     void handleEvent(const sf::Event& event);
-    void draw();
+    void draw(sf::RenderWindow& window);
 
 private:
     sf::RenderWindow& m_window;

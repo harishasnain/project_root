@@ -34,7 +34,7 @@ void Chatbot::handleEvent(const sf::Event& event) {
 
             if (m_exitButton.getGlobalBounds().contains(mousePos)) {
                 // Exit chatbot app
-                std::cout << "Exiting Chatbot" << std::endl;
+                m_shouldExit = true;
             }
         }
     } else if (event.type == sf::Event::TextEntered) {
@@ -50,7 +50,8 @@ void Chatbot::handleEvent(const sf::Event& event) {
     }
 }
 
-void Chatbot::draw() {
+void Chatbot::draw(sf::RenderWindow& window) {
+    m_window.clear(sf::Color::White);  // Clear the window with a white background
     m_window.draw(m_inputBox);
     m_window.draw(m_inputText);
     m_window.draw(m_exitButton);

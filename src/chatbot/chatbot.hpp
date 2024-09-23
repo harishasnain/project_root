@@ -8,7 +8,9 @@ class Chatbot {
 public:
     Chatbot(sf::RenderWindow& window);
     void handleEvent(const sf::Event& event);
-    void draw();
+    void draw(sf::RenderWindow& window);
+    void resetShouldExit() { m_shouldExit = false; }
+    bool shouldReturnToMain() const { return m_shouldExit; }
 
 private:
     sf::RenderWindow& m_window;
@@ -21,4 +23,5 @@ private:
 
     void sendMessage();
     void addMessageToChatHistory(const std::string& message, bool isUser);
+    bool m_shouldExit = false;
 };

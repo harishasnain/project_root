@@ -15,7 +15,7 @@ int main() {
         }
 
         window.clear(sf::Color::White);
-        mainWindow.draw();
+        mainWindow.draw(window);
         window.display();
     }
 

@@ -21,13 +21,13 @@ void Camera::handleEvent(const sf::Event& event) {
 
             if (m_exitButton.getGlobalBounds().contains(mousePos)) {
                 // Exit camera app
-                std::cout << "Exiting Camera" << std::endl;
+                m_shouldExit = true;
             }
         }
     }
 }
 
-void Camera::draw() {
+void Camera::draw(sf::RenderWindow& window) {
     m_window.draw(m_background);
     m_window.draw(m_exitButton);
 }

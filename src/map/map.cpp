@@ -114,7 +114,7 @@ void Map::handleEvent(const sf::Event& event) {
     }
 }
 
-void Map::draw() {
+void Map::draw(sf::RenderWindow& window) {
     m_window.draw(m_mapSprite);
     m_window.draw(m_layersButton);
     m_window.draw(m_searchButton);

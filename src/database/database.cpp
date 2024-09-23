@@ -20,14 +20,14 @@ void Database::handleEvent(const sf::Event& event) {
             sf::Vector2f mousePos = m_window.mapPixelToCoords(sf::Mouse::getPosition(m_window));
 
             if (m_exitButton.getGlobalBounds().contains(mousePos)) {
-                // Exit database app
-                std::cout << "Exiting Database" << std::endl;
+                m_shouldExit = true;
             }
         }
     }
 }
 
-void Database::draw() {
+
+void Database::draw(sf::RenderWindow& window) {
     m_window.draw(m_background);
     m_window.draw(m_exitButton);
 }

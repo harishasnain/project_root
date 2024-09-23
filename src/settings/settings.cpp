@@ -85,7 +85,7 @@ void Settings::handleEvent(const sf::Event& event) {
 
             if (m_exitButton.getGlobalBounds().contains(mousePos)) {
                 // Exit settings app
-                std::cout << "Exiting Settings" << std::endl;
+                m_shouldExit = true;
             } else if (m_timeButton.getGlobalBounds().contains(mousePos)) {
                 adjustTime();
             } else if (m_dateButton.getGlobalBounds().contains(mousePos)) {
@@ -101,7 +101,7 @@ void Settings::handleEvent(const sf::Event& event) {
     }
 }
 
-void Settings::draw() {
+void Settings::draw(sf::RenderWindow& window) {
     m_window.draw(m_exitButton);
     m_window.draw(m_timeText);
     m_window.draw(m_timeButton);

@@ -58,68 +58,74 @@ void MainWindow::handleEvent(const sf::Event& event) {
         return;
     }
 
-    if (event.type == sf::Event::MouseButtonPressed) {
-        if (event.mouseButton.button == sf::Mouse::Left) {
-            sf::Vector2f mousePos = m_window.mapPixelToCoords(sf::Mouse::getPosition(m_window));
-            handleAppButtonClick(mousePos);
+    if (m_activeApp == ActiveApp::None) {
+        if (event.type == sf::Event::MouseButtonPressed) {
+            if (event.mouseButton.button == sf::Mouse::Left) {
+                sf::Vector2f mousePos = m_window.mapPixelToCoords(sf::Mouse::getPosition(m_window));
+                handleAppButtonClick(mousePos);
+            }
+        }
+    } else {
+        switch (m_activeApp) {
+            case ActiveApp::Map:
+                m_map->handleEvent(event);
+                break;
+            case ActiveApp::Chatbot:
+                m_chatbot->handleEvent(event);
+                break;
+            case ActiveApp::Database:
+                m_database->handleEvent(event);
+                break;
+            case ActiveApp::Camera:
+                m_camera->handleEvent(event);
+                break;
+            case ActiveApp::Settings:
+                m_settings->handleEvent(event);
+                break;
+            default:
+                break;
         }
     }
 
-    switch (m_activeApp) {
-        case ActiveApp::Map:
-            m_map->handleEvent(event);
-            break;
-        case ActiveApp::Chatbot:
-            m_chatbot->handleEvent(event);
-            break;
-        case ActiveApp::Database:
-            m_database->handleEvent(event);
-            break;
-        case ActiveApp::Camera:
-            m_camera->handleEvent(event);
-            break;
-        case ActiveApp::Settings:
-            m_settings->handleEvent(event);
-            break;
-        default:
-            break;
+    // Check if any app wants to return to the main window
+    if (m_map->shouldReturnToMain() || m_chatbot->shouldReturnToMain() || 
+        m_database->shouldReturnToMain() || m_camera->shouldReturnToMain() || 
+        m_settings->shouldReturnToMain()) {
+        switchToApp(ActiveApp::None);
     }
 }
 
-void MainWindow::draw() {
-    if (m_isPasswordProtected && !m_isPasswordEntered) {
-        m_window.clear(sf::Color::White);
-        m_window.draw(m_passwordPrompt);
-        m_window.draw(m_passwordInput);
-        return;
-    }
-
+void MainWindow::draw(sf::RenderWindow& window) {
     m_window.clear(sf::Color::White);
 
-    updateTimeAndWeather();
-    m_window.draw(m_timeText);
-    m_window.draw(m_weatherText);
-
-    drawAppButtons();
-
-    switch (m_activeApp) {
-        case ActiveApp::Map:
-            m_map->draw();
-            break;
-        case ActiveApp::Chatbot:
-            m_chatbot->draw();
-            break;
-        case ActiveApp::Database:
-            m_database->draw();
-            break;
-        case ActiveApp::Camera:
-            m_camera->draw();
-            break;
-        case ActiveApp::Settings:
-            m_settings->draw();
-            break;
-        default:
-            break;
+    if (m_isPasswordProtected && !m_isPasswordEntered) {
+        m_window.draw(m_passwordPrompt);
+        m_window.draw(m_passwordInput);
+    } else if (m_activeApp == ActiveApp::None) {
+        updateTimeAndWeather();
+        m_window.draw(m_timeText);
+        m_window.draw(m_weatherText);
+        drawAppButtons();
+    } else {
+        switch (m_activeApp) {
+            case ActiveApp::Map:
+                m_map->draw(m_window);
+                break;
+            case ActiveApp::Chatbot:
+                m_chatbot->draw(m_window);
+                break;
+            case ActiveApp::Database:
+                m_database->draw(m_window);
+                break;
+            case ActiveApp::Camera:
+                m_camera->draw(m_window);
+                break;
+            case ActiveApp::Settings:
+                m_settings->draw(m_window);
+                break;
+            default:
+                break;
+        }
     }
 }
 
@@ -163,13 +169,20 @@ void MainWindow::handleAppButtonClick(sf::Vector2f mousePos) {
     for (size_t i = 0; i < m_appButtons.size(); ++i) {
         if (m_appButtons[i].getGlobalBounds().contains(mousePos)) {
             switchToApp(static_cast<ActiveApp>(i + 1));
-            break;
+            return;  // Add this line to exit the function after switching
         }
     }
 }
 
 void MainWindow::switchToApp(ActiveApp app) {
     m_activeApp = app;
+
+    // Reset the m_shouldExit flag for each app
+    m_map->resetShouldExit();
+    m_chatbot->resetShouldExit();
+    m_database->resetShouldExit();
+    m_camera->resetShouldExit();
+    m_settings->resetShouldExit();
 }
 
 void MainWindow::promptPassword() {

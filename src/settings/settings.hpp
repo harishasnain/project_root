@@ -8,7 +8,8 @@ class Settings {
 public:
     Settings(sf::RenderWindow& window);
     void handleEvent(const sf::Event& event);
-    void draw();
+    void draw(sf::RenderWindow& window);
+    void resetShouldExit() { m_shouldExit = false; }
 
     // Callback functions for main window
     std::function<void(const sf::Time&)> onTimeChanged;
@@ -16,6 +17,7 @@ public:
     std::function<void(bool)> onMetricSystemChanged;
     std::function<void(bool)> onLowPowerModeChanged;
     std::function<void(const std::string&)> onPasswordChanged;
+    bool shouldReturnToMain() const { return m_shouldExit; }
 
 private:
     sf::RenderWindow& m_window;
@@ -43,4 +45,5 @@ private:
     void changePassword();
     void adjustTime();
     void adjustDate();
+    bool m_shouldExit = false;
 };
