@@ -1,17 +1,25 @@
 #include "map.hpp"
 #include <iostream>
+#include <SFML/Graphics.hpp>
+#include <vector>
+#include <ogr_geometry.h>
 
 Map::Map(sf::RenderWindow& window)
     : m_window(window),
       m_isLayersPanelOpen(false),
       m_isSecondaryPanelOpen(false),
       m_isSearchActive(false),
-      m_currentBaseLayer(BaseLayer::Streetmap)
+      m_currentBaseLayer(BaseLayer::Streetmap),
+      m_needsRedraw(true)
 {
+
+    // Set the PROJ_LIB environment variable
+    _putenv("PROJ_LIB=C:\\project_root\\vcpkg\\installed\\x64-windows\\share\\proj");
+
     if (!m_font.loadFromFile("resources/fonts/Roboto-Regular.ttf")) {
        // Handle font loading error
        std::cerr << "Failed to load font" << std::endl;
-	}
+    }
 
     // Initialize buttons and panels
     m_layersButton = sf::RectangleShape(sf::Vector2f(50, 50));
@@ -53,8 +61,8 @@ Map::Map(sf::RenderWindow& window)
     }
 
     // Initialize secondary layer buttons
-    std::vector<std::string> secondaryLayerNames = {"Information", "Resources"};
-    for (size_t i = 0; i < secondaryLayerNames.size(); ++i) {
+    m_secondaryLayerNames = {"Information", "Resources"}; // Initialize secondary layer names
+    for (size_t i = 0; i < m_secondaryLayerNames.size(); ++i) {
         sf::RectangleShape button(sf::Vector2f(m_secondaryPanel.getSize().x - 20, 40));
         button.setPosition(m_secondaryPanel.getPosition().x + 10, 10 + i * 50);
         button.setFillColor(sf::Color::White);
@@ -66,6 +74,7 @@ Map::Map(sf::RenderWindow& window)
 
     // Load initial map data
     loadMapData("resources/maps/streetmap.gpkg");
+    setNeedsRedraw();
 }
 
 Map::~Map() {
@@ -79,16 +88,19 @@ void Map::handleEvent(const sf::Event& event) {
 
             if (m_layersButton.getGlobalBounds().contains(mousePos)) {
                 toggleLayersPanel();
+                setNeedsRedraw();
             } else if (m_searchButton.getGlobalBounds().contains(mousePos)) {
                 toggleSearch();
+                setNeedsRedraw();
             } else if (m_exitButton.getGlobalBounds().contains(mousePos)) {
-                // Exit map app
+                m_shouldExit = true;
             }
 
             // Handle base layer button clicks
             for (size_t i = 0; i < m_baseLayerButtons.size(); ++i) {
                 if (m_baseLayerButtons[i].getGlobalBounds().contains(mousePos)) {
                     changeBaseLayer(static_cast<BaseLayer>(i));
+                    setNeedsRedraw();
                     break;
                 }
             }
@@ -96,89 +108,237 @@ void Map::handleEvent(const sf::Event& event) {
             // Handle secondary layer button clicks
             for (size_t i = 0; i < m_secondaryLayerButtons.size(); ++i) {
                 if (m_secondaryLayerButtons[i].getGlobalBounds().contains(mousePos)) {
-                    addSecondaryLayer("Layer" + std::to_string(i + 1));
+                    addSecondaryLayer(m_secondaryLayerNames[i]);
+                    setNeedsRedraw();
                     break;
                 }
             }
         }
-    } else if (event.type == sf::Event::TextEntered && m_isSearchActive) {
-        if (event.text.unicode == 13) { // Enter key
-            handleSearch();
-        } else if (event.text.unicode == 8) { // Backspace
-            if (!m_searchText.getString().isEmpty()) {
-                m_searchText.setString(m_searchText.getString().substring(0, m_searchText.getString().getSize() - 1));
+    } else if (event.type == sf::Event::TextEntered) {
+        if (m_isSearchActive) {
+            if (event.text.unicode == '\b') {
+                // Handle backspace
+                if (!m_searchText.getString().isEmpty()) {
+                    std::string str = m_searchText.getString();
+                    str.pop_back();
+                    m_searchText.setString(str);
+                    setNeedsRedraw();
+                }
+            } else if (event.text.unicode == '\r') {
+                // Handle enter
+                handleSearch();
+                setNeedsRedraw();
+            } else {
+                // Handle regular text input
+                m_searchText.setString(m_searchText.getString() + static_cast<char>(event.text.unicode));
+                setNeedsRedraw();
             }
-        } else if (event.text.unicode < 128) {
-            m_searchText.setString(m_searchText.getString() + static_cast<char>(event.text.unicode));
         }
     }
 }
 
 void Map::draw(sf::RenderWindow& window) {
-    m_window.draw(m_mapSprite);
-    m_window.draw(m_layersButton);
-    m_window.draw(m_searchButton);
-    m_window.draw(m_exitButton);
+    if (!m_needsRedraw) return;
+
+    window.clear(); // Clear the window before drawing
+
+    // Draw the map sprite if it exists
+    if (m_mapTexture.getSize().x > 0 && m_mapTexture.getSize().y > 0) {
+        window.draw(m_mapSprite);
+    }
+
+    window.draw(m_layersButton);
+    window.draw(m_searchButton);
+    window.draw(m_exitButton);
 
     if (m_isLayersPanelOpen) {
-        m_window.draw(m_layersPanel);
+        window.draw(m_layersPanel);
         for (const auto& button : m_baseLayerButtons) {
-            m_window.draw(button);
+            window.draw(button);
         }
     }
 
     if (m_isSecondaryPanelOpen) {
-        m_window.draw(m_secondaryPanel);
+        window.draw(m_secondaryPanel);
         for (const auto& button : m_secondaryLayerButtons) {
-            m_window.draw(button);
+            window.draw(button);
         }
     }
 
     if (m_isSearchActive) {
-        m_window.draw(m_searchBar);
-        m_window.draw(m_searchText);
+        window.draw(m_searchBar);
+        window.draw(m_searchText);
     }
+
+    // Draw vector shapes
+    for (const auto& shape : m_vectorShapes) {
+        window.draw(shape);
+    }
+
+    window.display(); // Display the window contents
+    m_needsRedraw = false;
+}
+
+void Map::setNeedsRedraw() {
+    m_needsRedraw = true;
+}
+
+bool Map::needsRedraw() const {
+    return m_needsRedraw;
 }
 
 void Map::loadMapData(const std::string& filename) {
-    m_currentDataset.reset(static_cast<GDALDataset*>(GDALOpen(filename.c_str(), GA_ReadOnly)));
+    std::cout << "Loading map data from: " << filename << std::endl;
+    m_currentDataset.reset(static_cast<GDALDataset*>(GDALOpenEx(filename.c_str(), GDAL_OF_VECTOR | GDAL_OF_RASTER, nullptr, nullptr, nullptr)));
     if (!m_currentDataset) {
-        std::cerr << "Failed to open " << filename << std::endl;
+        std::cerr << "Failed to load map data from " << filename << std::endl;
         return;
     }
 
-    renderMap();
+    // Load raster data
+    GDALRasterBand* band = m_currentDataset->GetRasterBand(1);
+    if (band) {
+        int width = band->GetXSize();
+        int height = band->GetYSize();
+        std::vector<float> data(width * height);
+        band->RasterIO(GF_Read, 0, 0, width, height, data.data(), width, height, GDT_Float32, 0, 0);
+
+        m_mapImage.create(width, height);
+        for (int y = 0; y < height; ++y) {
+            for (int x = 0; x < width; ++x) {
+                float value = data[y * width + x];
+                sf::Color color = sf::Color::White; // Default color
+                if (value > 0) {
+                    color = sf::Color::Black; // Example: change color based on value
+                }
+                m_mapImage.setPixel(x, y, color);
+            }
+        }
+
+        m_mapTexture.loadFromImage(m_mapImage);
+        m_mapSprite.setTexture(m_mapTexture);
+        std::cout << "Raster data loaded successfully." << std::endl;
+    } else {
+        std::cerr << "No raster band found in the dataset." << std::endl;
+    }
+
+    // Load vector data
+    loadVectorData(m_currentDataset.get());
+
+    updateMapView();
 }
 
-void Map::renderMap() {
-    // This is a simplified rendering process. In a real application, you'd need to handle
-    // different projections, zoom levels, and more complex rendering logic.
-    int width = m_currentDataset->GetRasterXSize();
-    int height = m_currentDataset->GetRasterYSize();
 
-    m_mapImage.create(width, height, sf::Color::White);
+void Map::loadVectorData(GDALDataset* dataset) {
+    m_vectorShapes.clear();
+    std::cout << "Loading vector data..." << std::endl;
 
-    // Read data from all bands
-    std::vector<float> data(width * height * 3);
-    m_currentDataset->RasterIO(GF_Read, 0, 0, width, height, data.data(), width, height, GDT_Float32, 3, nullptr, 0, 0, 0);
+    // Get the spatial reference of the dataset
+    OGRSpatialReference* datasetSRS = nullptr;
+    if (dataset->GetLayerCount() > 0) {
+        datasetSRS = dataset->GetLayer(0)->GetSpatialRef();
+    }
 
-    // Convert the data to SFML image
-    for (int y = 0; y < height; ++y) {
-        for (int x = 0; x < width; ++x) {
-            int index = (y * width + x) * 3;
-            sf::Color color(
-                static_cast<sf::Uint8>(data[index] * 255),
-                static_cast<sf::Uint8>(data[index + 1] * 255),
-                static_cast<sf::Uint8>(data[index + 2] * 255)
-            );
-            m_mapImage.setPixel(x, y, color);
+    // Create a transformation to the window's coordinate system
+    OGRSpatialReference windowSRS;
+    windowSRS.SetWellKnownGeogCS("WGS84");
+    OGRCoordinateTransformation* coordTransform = nullptr;
+    if (datasetSRS) {
+        coordTransform = OGRCreateCoordinateTransformation(datasetSRS, &windowSRS);
+    }
+
+    for (int i = 0; i < dataset->GetLayerCount(); ++i) {
+        OGRLayer* layer = dataset->GetLayer(i);
+        if (!layer) {
+            std::cout << "Layer " << i << " is null" << std::endl;
+            continue;
+        }
+
+        std::cout << "Processing layer " << i << std::endl;
+
+        layer->ResetReading();
+        OGRFeature* feature;
+        while ((feature = layer->GetNextFeature()) != nullptr) {
+            OGRGeometry* geom = feature->GetGeometryRef();
+            if (!geom) {
+                OGRFeature::DestroyFeature(feature);
+                continue;
+            }
+
+            processGeometry(geom, coordTransform);
+            OGRFeature::DestroyFeature(feature);
         }
     }
 
-    m_mapTexture.loadFromImage(m_mapImage);
-    m_mapSprite.setTexture(m_mapTexture);
+    if (coordTransform) {
+        OCTDestroyCoordinateTransformation(coordTransform);
+    }
 
-    updateMapView();
+    std::cout << "Vector data loaded successfully." << std::endl;
+}
+
+void Map::processGeometry(OGRGeometry* geom, OGRCoordinateTransformation* coordTransform) {
+    OGRwkbGeometryType type = wkbFlatten(geom->getGeometryType());
+    sf::VertexArray shape;
+
+    if (type == wkbLineString || type == wkbLinearRing || type == wkbCircularString) {
+        shape = sf::VertexArray(sf::LineStrip);
+        OGRSimpleCurve* curve = dynamic_cast<OGRSimpleCurve*>(geom);
+        if (curve) {
+            int numPoints = curve->getNumPoints();
+            for (int j = 0; j < numPoints; ++j) {
+                OGRPoint point;
+                curve->getPoint(j, &point);
+                double x = point.getX(), y = point.getY();
+                if (coordTransform) coordTransform->Transform(1, &x, &y);
+                double scaledX = (x + 180.0) * (m_window.getSize().x / 360.0);
+                double scaledY = (90.0 - y) * (m_window.getSize().y / 180.0);
+                shape.append(sf::Vertex(sf::Vector2f(scaledX, scaledY), sf::Color::Red));
+            }
+
+            // For CircularString, add more points to smooth the curve
+            if (type == wkbCircularString) {
+                sf::VertexArray smoothedShape(sf::LineStrip);
+                int smoothPoints = 100;
+                for (int i = 0; i < shape.getVertexCount() - 1; ++i) {
+                    sf::Vector2f p1 = shape[i].position;
+                    sf::Vector2f p2 = shape[i + 1].position;
+                    for (int j = 0; j < smoothPoints; ++j) {
+                        float t = j / static_cast<float>(smoothPoints);
+                        sf::Vector2f interpolated = p1 + (p2 - p1) * t;
+                        smoothedShape.append(sf::Vertex(interpolated, sf::Color::Red));
+                    }
+                }
+                shape = smoothedShape;
+            }
+
+            m_vectorShapes.push_back(shape);
+        }
+    } else if (type == wkbPolygon) {
+        OGRPolygon* poly = dynamic_cast<OGRPolygon*>(geom);
+        if (poly) {
+            processGeometry(poly->getExteriorRing(), coordTransform);
+            for (int r = 0; r < poly->getNumInteriorRings(); ++r) {
+                processGeometry(poly->getInteriorRing(r), coordTransform);
+            }
+        }
+    } else if (type == wkbMultiLineString || type == wkbMultiPolygon || type == wkbGeometryCollection) {
+        OGRGeometryCollection* collection = dynamic_cast<OGRGeometryCollection*>(geom);
+        if (collection) {
+            for (int j = 0; j < collection->getNumGeometries(); ++j) {
+                processGeometry(collection->getGeometryRef(j), coordTransform);
+            }
+        }
+    } else if (type == wkbCompoundCurve) {
+        OGRCompoundCurve* compound = dynamic_cast<OGRCompoundCurve*>(geom);
+        if (compound) {
+            for (int j = 0; j < compound->getNumCurves(); ++j) {
+                processGeometry(compound->getCurve(j), coordTransform);
+            }
+        }
+    } else {
+        std::cout << "Unsupported geometry type: " << OGRGeometryTypeToName(type) << std::endl;
+    }
 }
 
 void Map::updateMapView() {

@@ -14,7 +14,9 @@ public:
 
     void handleEvent(const sf::Event& event);
     void draw(sf::RenderWindow& window);
-    void resetShouldExit() { m_shouldExit = false;}
+    void resetShouldExit() { m_shouldExit = false; }
+    void setNeedsRedraw();
+    bool needsRedraw() const;
     bool shouldReturnToMain() const { return m_shouldExit; }
 
 private:
@@ -30,12 +32,14 @@ private:
     bool m_isSecondaryPanelOpen;
     bool m_isSearchActive;
     bool m_shouldExit = false;
+    bool m_needsRedraw;
 
     sf::RectangleShape m_layersPanel;
     sf::RectangleShape m_secondaryPanel;
 
     std::vector<sf::RectangleShape> m_baseLayerButtons;
     std::vector<sf::RectangleShape> m_secondaryLayerButtons;
+    std::vector<sf::VertexArray> m_vectorShapes; // Store vector shapes
 
     enum class BaseLayer {
         Satellite,
@@ -47,11 +51,13 @@ private:
     BaseLayer m_currentBaseLayer;
 
     std::unique_ptr<GDALDataset> m_currentDataset;
+    std::vector<std::string> m_secondaryLayerNames;
     sf::Image m_mapImage;
     sf::Texture m_mapTexture;
     sf::Sprite m_mapSprite;
 
     void loadMapData(const std::string& filename);
+    void loadVectorData(GDALDataset* dataset); // Method to load vector data
     void renderMap();
     void updateMapView();
     void toggleLayersPanel();
@@ -60,4 +66,5 @@ private:
     void handleSearch();
     void changeBaseLayer(BaseLayer layer);
     void addSecondaryLayer(const std::string& layerName);
+    void processGeometry(OGRGeometry* geom, OGRCoordinateTransformation* coordTransform);
 };

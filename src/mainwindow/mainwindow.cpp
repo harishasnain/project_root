@@ -4,6 +4,12 @@
 #include <sstream>
 #include <iostream>
 
+#include "mainwindow.hpp"
+#include <chrono>
+#include <iomanip>
+#include <sstream>
+#include <iostream>
+
 MainWindow::MainWindow(sf::RenderWindow& window)
     : m_window(window),
       m_activeApp(ActiveApp::None),
@@ -12,7 +18,7 @@ MainWindow::MainWindow(sf::RenderWindow& window)
 {
     if (!m_font.loadFromFile("resources/fonts/Roboto-Regular.ttf")) {
         // Handle font loading error
-		std::cerr << "Failed to load font" << std::endl;
+        std::cerr << "Failed to load font" << std::endl;
     }
 
     m_timeText.setFont(m_font);
@@ -33,23 +39,8 @@ MainWindow::MainWindow(sf::RenderWindow& window)
 
     m_settings->onTimeChanged = [this](const sf::Time& newTime) { onTimeChanged(newTime); };
     m_settings->onDateChanged = [this](const sf::Time& newDate) { onDateChanged(newDate); };
-    m_settings->onMetricSystemChanged = [this](bool isMetric) { onMetricSystemChanged(isMetric); };
-    m_settings->onLowPowerModeChanged = [this](bool isLowPower) { onLowPowerModeChanged(isLowPower); };
-    m_settings->onPasswordChanged = [this](const std::string& newPassword) { onPasswordChanged(newPassword); };
 
-    initializeAppButtons();
-    updateTimeAndWeather();
-
-    m_passwordPrompt.setFont(m_font);
-    m_passwordPrompt.setCharacterSize(24);
-    m_passwordPrompt.setFillColor(sf::Color::Black);
-    m_passwordPrompt.setPosition(400, 300);
-    m_passwordPrompt.setString("Enter Password:");
-
-    m_passwordInput.setFont(m_font);
-    m_passwordInput.setCharacterSize(24);
-    m_passwordInput.setFillColor(sf::Color::Black);
-    m_passwordInput.setPosition(400, 350);
+    initializeAppButtons(); // Add this line to initialize app buttons
 }
 
 void MainWindow::handleEvent(const sf::Event& event) {
@@ -105,7 +96,7 @@ void MainWindow::draw(sf::RenderWindow& window) {
         updateTimeAndWeather();
         m_window.draw(m_timeText);
         m_window.draw(m_weatherText);
-        drawAppButtons();
+        drawAppButtons(); // Ensure this method is called to draw app buttons
     } else {
         switch (m_activeApp) {
             case ActiveApp::Map:
@@ -198,13 +189,13 @@ void MainWindow::handlePasswordInput(const sf::Event& event) {
             } else {
                 m_passwordInput.setString("");
             }
-        } else if (event.text.unicode == 8) { // Backspace
-            std::string currentInput = m_passwordInput.getString();
-            if (!currentInput.empty()) {
-                currentInput.pop_back();
-                m_passwordInput.setString(currentInput);
+        } else if (event.text.unicode == 8) { // Backspace key
+            std::string str = m_passwordInput.getString();
+            if (!str.empty()) {
+                str.pop_back();
+                m_passwordInput.setString(str);
             }
-        } else if (event.text.unicode < 128) {
+        } else {
             m_passwordInput.setString(m_passwordInput.getString() + static_cast<char>(event.text.unicode));
         }
     }
@@ -215,29 +206,21 @@ bool MainWindow::checkPassword(const std::string& input) {
 }
 
 void MainWindow::onTimeChanged(const sf::Time& newTime) {
-    // Update system time (this is just a placeholder, as changing system time requires system-level permissions)
-    std::cout << "Time changed to: " << newTime.asSeconds() << " seconds since epoch" << std::endl;
+    // Handle time change
 }
 
 void MainWindow::onDateChanged(const sf::Time& newDate) {
-    // Update system date (this is just a placeholder, as changing system date requires system-level permissions)
-    std::cout << "Date changed to: " << newDate.asSeconds() << " seconds since epoch" << std::endl;
+    // Handle date change
 }
 
 void MainWindow::onMetricSystemChanged(bool isMetric) {
-    std::cout << "Metric system " << (isMetric ? "enabled" : "disabled") << std::endl;
-    // Update weather display and other relevant components
+    // Handle metric system change
 }
 
 void MainWindow::onLowPowerModeChanged(bool isLowPower) {
-    std::cout << "Low power mode " << (isLowPower ? "enabled" : "disabled") << std::endl;
-    // Implement low power mode functionality
+    // Handle low power mode change
 }
 
 void MainWindow::onPasswordChanged(const std::string& newPassword) {
     m_password = newPassword;
-    m_isPasswordProtected = !m_password.empty();
-    if (m_isPasswordProtected) {
-        promptPassword();
-    }
 }
